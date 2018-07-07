@@ -1,0 +1,21 @@
+public function up()
+    {
+        Schema::create('lineup', function (Blueprint $table) {
+            $table->increments('id_lineup')->unique();
+            $table->integer('id_matches');
+            $table->string('nama', 250);
+            $table->integer('posisi');
+            $table->integer('no_punggung');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('lineup');
+    }

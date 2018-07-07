@@ -1,0 +1,38 @@
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class CreateGrupTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('grup', function (Blueprint $table) {
+            $table->increments('id_grup')->unique();
+            $table->integer('kejuaraan_id')->unsigned()->nullable();
+            $table->string('nama_grup');
+            $table->date('tgl_mulai');
+            $table->timestamps();
+        });
+
+        Schema::table('grup', function($table){
+            $table->foreign('kejuaraan_id')->references('id_kejuaraan')->on('kejuaraan')->onDelete('cascade');
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('grup');
+    }
+}

@@ -1,0 +1,19 @@
+ public function up()
+    {
+        Schema::create('negara', function (Blueprint $table) {
+            $table->increments('id_negara')->unique();
+            $table->string('kode_negara',256);
+            $table->string('nama_negara',256);
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('negara');
+    }

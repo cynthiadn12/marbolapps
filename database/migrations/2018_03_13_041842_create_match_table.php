@@ -1,0 +1,176 @@
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class CreateMatchTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('match', function (Blueprint $table) {
+            $table->increments('id_match')->unique();
+            $table->integer('lineup_id')->unsigned()->nullable();
+            $table->integer('country_id')->unsigned()->nullable();
+            $table->integer('league_id')->unsigned()->nullable();
+            $table->string('season');
+            $table->integer('stage');
+            $table->date('date');
+            $table->integer('match_api_id');
+            $table->integer('home_team_api_id')->unsigned()->nullable();
+            $table->integer('away_team_api_id')->unsigned()->nullable();
+            $table->integer('home_team_goal');
+            $table->integer('away_team_goal');
+            $table->integer('home_player_X1');
+            $table->integer('home_player_X2');
+            $table->integer('home_player_X3');
+            $table->integer('home_player_X4');
+            $table->integer('home_player_X5');
+            $table->integer('home_player_X6');
+            $table->integer('home_player_X7');
+            $table->integer('home_player_X8');
+            $table->integer('home_player_X9');
+            $table->integer('home_player_X10');
+            $table->integer('home_player_X11');
+            $table->integer('away_player_X1');
+            $table->integer('away_player_X2');
+            $table->integer('away_player_X3');
+            $table->integer('away_player_X4');
+            $table->integer('away_player_X5');
+            $table->integer('away_player_X6');
+            $table->integer('away_player_X7');
+            $table->integer('away_player_X8');
+            $table->integer('away_player_X9');
+            $table->integer('away_player_X10');
+            $table->integer('away_player_X11');
+            $table->integer('home_player_Y1');
+            $table->integer('home_player_Y2');
+            $table->integer('home_player_Y3');
+            $table->integer('home_player_Y4');
+            $table->integer('home_player_Y5');
+            $table->integer('home_player_Y6');
+            $table->integer('home_player_Y7');
+            $table->integer('home_player_Y8');
+            $table->integer('home_player_Y9');
+            $table->integer('home_player_Y10');
+            $table->integer('home_player_Y11');
+            $table->integer('away_player_Y1');
+            $table->integer('away_player_Y2');
+            $table->integer('away_player_Y3');
+            $table->integer('away_player_Y4');
+            $table->integer('away_player_Y5');
+            $table->integer('away_player_Y6');
+            $table->integer('away_player_Y7');
+            $table->integer('away_player_Y8');
+            $table->integer('away_player_Y9');
+            $table->integer('away_player_Y10');
+            $table->integer('away_player_Y11');
+            $table->integer('home_player_1')->unsigned()->nullable();
+            $table->integer('home_player_2')->unsigned()->nullable();
+            $table->integer('home_player_3')->unsigned()->nullable();
+            $table->integer('home_player_4')->unsigned()->nullable();
+            $table->integer('home_player_5')->unsigned()->nullable();
+            $table->integer('home_player_6')->unsigned()->nullable();
+            $table->integer('home_player_7')->unsigned()->nullable();
+            $table->integer('home_player_8')->unsigned()->nullable();
+            $table->integer('home_player_9')->unsigned()->nullable();
+            $table->integer('home_player_10')->unsigned()->nullable();
+            $table->integer('home_player_11')->unsigned()->nullable();
+            $table->integer('away_player_1')->unsigned()->nullable();
+            $table->integer('away_player_2')->unsigned()->nullable();
+            $table->integer('away_player_3')->unsigned()->nullable();
+            $table->integer('away_player_4')->unsigned()->nullable();
+            $table->integer('away_player_5')->unsigned()->nullable();
+            $table->integer('away_player_6')->unsigned()->nullable();
+            $table->integer('away_player_7')->unsigned()->nullable();
+            $table->integer('away_player_8')->unsigned()->nullable();
+            $table->integer('away_player_9')->unsigned()->nullable();
+            $table->integer('away_player_10')->unsigned()->nullable();
+            $table->integer('away_player_11')->unsigned()->nullable();
+            $table->string('goal');
+            $table->string('shoton');
+            $table->string('shotoff');
+            $table->string('foulcommit');
+            $table->string('card');
+            $table->string('cross');
+            $table->string('corner');
+            $table->string('possession');
+            $table->integer('B365H');
+            $table->integer('B365D');
+            $table->integer('B365A');
+            $table->integer('BWH');
+            $table->integer('BWD');
+            $table->integer('BWA');
+            $table->integer('IWH');
+            $table->integer('IWD');
+            $table->integer('IWA');
+            $table->integer('LBH');
+            $table->integer('LBD');
+            $table->integer('LBA');
+            $table->integer('PSH');
+            $table->integer('PSD');
+            $table->integer('PSA');
+            $table->integer('WHH');
+            $table->integer('WHD');
+            $table->integer('WHA');
+            $table->integer('SJH');
+            $table->integer('SJD');
+            $table->integer('SJA');
+            $table->integer('VCH');
+            $table->integer('VCD');
+            $table->integer('VCA');
+            $table->integer('GBH');
+            $table->integer('GBD');
+            $table->integer('GBA');
+            $table->integer('BSH');
+            $table->integer('BSD');
+            $table->integer('BSA');
+            $table->timestamps();
+        });
+
+        Schema::table('match', function($table){
+            $table->foreign('lineup_id')->references('id_lineup')->on('lineup')->onDelete('cascade');
+            $table->foreign('country_id')->references('id_country')->on('country')->onDelete('cascade');
+            $table->foreign('league_id')->references('id_league')->on('league')->onDelete('cascade');
+            $table->foreign('home_team_api_id')->references('id_team')->on('team')->onDelete('cascade');
+            $table->foreign('away_team_api_id')->references('id_team')->on('team')->onDelete('cascade');
+            $table->foreign('home_player_1')->references('id_team')->on('team')->onDelete('cascade');
+            $table->foreign('home_player_2')->references('id_team')->on('team')->onDelete('cascade');
+            $table->foreign('home_player_3')->references('id_team')->on('team')->onDelete('cascade');
+            $table->foreign('home_player_4')->references('id_team')->on('team')->onDelete('cascade');
+            $table->foreign('home_player_5')->references('id_team')->on('team')->onDelete('cascade');
+            $table->foreign('home_player_6')->references('id_team')->on('team')->onDelete('cascade');
+            $table->foreign('home_player_7')->references('id_team')->on('team')->onDelete('cascade');
+            $table->foreign('home_player_8')->references('id_team')->on('team')->onDelete('cascade');
+            $table->foreign('home_player_9')->references('id_team')->on('team')->onDelete('cascade');
+            $table->foreign('home_player_10')->references('id_team')->on('team')->onDelete('cascade');
+            $table->foreign('home_player_11')->references('id_team')->on('team')->onDelete('cascade');
+            $table->foreign('away_player_1')->references('id_team')->on('team')->onDelete('cascade');
+            $table->foreign('away_player_2')->references('id_team')->on('team')->onDelete('cascade');
+            $table->foreign('away_player_3')->references('id_team')->on('team')->onDelete('cascade');
+            $table->foreign('away_player_4')->references('id_team')->on('team')->onDelete('cascade');
+            $table->foreign('away_player_5')->references('id_team')->on('team')->onDelete('cascade');
+            $table->foreign('away_player_6')->references('id_team')->on('team')->onDelete('cascade');
+            $table->foreign('away_player_7')->references('id_team')->on('team')->onDelete('cascade');
+            $table->foreign('away_player_8')->references('id_team')->on('team')->onDelete('cascade');
+            $table->foreign('away_player_9')->references('id_team')->on('team')->onDelete('cascade');
+            $table->foreign('away_player_10')->references('id_team')->on('team')->onDelete('cascade');
+            $table->foreign('away_player_11')->references('id_team')->on('team')->onDelete('cascade');
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('match');
+    }
+}
